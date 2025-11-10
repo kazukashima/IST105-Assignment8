@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DHCP Network Automation</title>
+</head>
+<body>
+    <h1>DHCP Network Automation Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>MAC Address:</label>
+        <input type="text" name="mac_address" required><br><br>
+        <label>DHCP Version:</label>
+        <select name="dhcp_version" required>
+            <option value="DHCPv4">DHCPv4</option>
+            <option value="DHCPv6">DHCPv6</option>
+        </select><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if mac %}
+        <h2>Submitted Data:</h2>
+        <p><strong>MAC Address:</strong> {{ mac }}</p>
+        <p><strong>DHCP Version:</strong> {{ dhcp_version }}</p>
+        <p><strong>Assigned IP:</strong> {{ assigned_ip }}</p>
+        <p><strong>Lease Time:</strong> {{ lease_time }}</p>
+    {% elif error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
+
